@@ -1,0 +1,8 @@
+.DS_Store
+.qmake.stash
+/build
+Makefile
+src/Config.h
+Tasks.txt
+/WundergroundDownloader.app
+*.user
