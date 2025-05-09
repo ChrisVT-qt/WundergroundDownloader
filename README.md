@@ -12,6 +12,9 @@ wireless network to access its data.
 - This tool facilitates this activity.
 
 Current status
+- Application seems to work on macOS 15.3 Sequoia and Qt 6.9.0. 
+- Not tested on other platforms, but given it only uses Qt, I see no reason why 
+it would not.
 - This tool takes your PWS device ID and a WU API key that you can
 obtain from WU for free.
 - It downloads all available data from WU ever houry and stores them
