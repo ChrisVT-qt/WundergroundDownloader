@@ -241,6 +241,7 @@ bool WundergroundComms::OpenDatabase()
         const QString max_date = sorted_dates.last();
         QDate this_date = QDate::fromString(min_date, "yyyy-MM-dd");
         const QDate end_date = QDate::fromString(max_date, "yyyy-MM-dd");
+        const QString today = QDate::currentDate().toString("yyyy-MM-dd");
         QStringList no_data;
         QStringList incomplete_data;
         while (this_date <= end_date)
@@ -251,7 +252,7 @@ bool WundergroundComms::OpenDatabase()
                 no_data << this_date_text;
             } else if (observation_count[this_date_text] < 24*12 &&
                 this_date_text != min_date &&
-                this_date_text != max_date)
+                this_date_text != today)
             {
                 incomplete_data << this_date_text;
             }
