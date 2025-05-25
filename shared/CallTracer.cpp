@@ -283,8 +283,11 @@ void CallTracer::ShowUsage(const QString mcClass, const QString mcMethod)
     {
         QList < QString > all_classes = m_CallCount.keys();
         std::sort(all_classes.begin(), all_classes.end());
-        for (const QString & class_name : all_classes)
+        for (auto class_iterator = all_classes.begin();
+             class_iterator != all_classes.end();
+             class_iterator++)
         {
+            const QString class_name = *class_iterator;
             ShowUsage(class_name);
         }
     } else
@@ -293,8 +296,11 @@ void CallTracer::ShowUsage(const QString mcClass, const QString mcMethod)
         {
             QList < QString > all_methods = m_CallCount[mcClass].keys();
             std::sort(all_methods.begin(), all_methods.end());
-            for (const QString & method_name : all_methods)
+            for (auto method_iterator = all_methods.begin();
+                 method_iterator != all_methods.end();
+                 method_iterator++)
             {
+                const QString method_name = *method_iterator;
                 ShowUsage(mcClass, method_name);
             }
         } else
@@ -559,8 +565,11 @@ QString CallTracer::Show(const QHash < double, double > & mcrValue)
     QStringList values;
     QList < double > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (double key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const double key = *key_iterator;
         double value = mcrValue[key];
         values << QString("%1: %2")
             .arg(QString::number(key, 'g', 6),
@@ -579,8 +588,11 @@ QString CallTracer::Show(const QHash < int, double > & mcrValue)
     QStringList values;
     QList < int > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (int key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const int key = *key_iterator;
         double value = mcrValue[key];
         values << QString("%1: %2")
             .arg(QString::number(key),
@@ -599,8 +611,11 @@ QString CallTracer::Show(const QHash < int, int > & mcrValue)
     QStringList values;
     QList < int > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (int key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const int key = *key_iterator;
         int value = mcrValue[key];
         values << QString("%1: %2")
             .arg(QString::number(key),
@@ -619,8 +634,11 @@ QString CallTracer::Show(const QHash < int, QDateTime > & mcrValue)
     QStringList values;
     QList < int > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (int key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const int key = *key_iterator;
         QDateTime value = mcrValue[key];
         values << QString("%1: \"%2\"")
             .arg(QString::number(key),
@@ -640,8 +658,11 @@ QString CallTracer::Show(const QHash < int, QString > & mcrValue)
     QStringList values;
     QList < int > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (int key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const int key = *key_iterator;
         QString value = mcrValue[key];
         value.replace("\n", "\\n");
         if (value.size() > 20)
@@ -665,10 +686,11 @@ QString CallTracer::Show(const QHash < QString, int > & mcrValue)
     QStringList values;
     QList < QString > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (const QString & key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
-        // We should not abbreviate the key!
-
+        const QString key = *key_iterator;
         int value = mcrValue[key];
         values << QString("%1: %2")
             .arg(key,
@@ -686,8 +708,11 @@ QString CallTracer::Show(const QHash < QString, QList < double > > & mcrValue)
     QStringList values;
     QList < QString > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (const QString & key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const QString key = *key_iterator;
         values << QString("%1: {%2}")
             .arg(key,
                  CALL_SHOW(mcrValue[key]));
@@ -704,8 +729,11 @@ QString CallTracer::Show(const QHash < QString, QList < QString > > & mcrValue)
     QStringList values;
     QList < QString > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (const QString & key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
+        const QString key = *key_iterator;
         values << QString("%1: {%2}")
             .arg(key,
                  CALL_SHOW(mcrValue[key]));
@@ -723,10 +751,11 @@ QString CallTracer::Show(const QHash < QString, QString > & mcrValue)
     QStringList values;
     QList < QString > sorted_keys = mcrValue.keys();
     std::sort(sorted_keys.begin(), sorted_keys.end());
-    for (const QString & key : sorted_keys)
+    for (auto key_iterator = sorted_keys.begin();
+         key_iterator != sorted_keys.end();
+         key_iterator++)
     {
-        // We should not abbreviate the key!
-
+        const QString key = *key_iterator;
         QString value = mcrValue[key];
         value.replace("\n", "\\n");
         if (value.size() > 20)
