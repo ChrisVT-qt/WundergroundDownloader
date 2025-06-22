@@ -185,7 +185,7 @@ void MainWindow::GetSpecificDate()
     QHBoxLayout * layout = new QHBoxLayout();
     dialog -> setLayout(layout);
 
-    QLabel * l_date = new QLabel(tr("Date (YYYYMMDD): "));
+    QLabel * l_date = new QLabel(tr("Date (YYYY-MM-DD): "));
     layout -> addWidget(l_date);
 
     QLineEdit * date = new QLineEdit();
@@ -196,8 +196,15 @@ void MainWindow::GetSpecificDate()
     const int result = dialog -> exec();
     if (result == QDialog::Accepted)
     {
+        const QDate date_picked =
+            QDate::fromString(date -> text(), "yyyy-MM-dd");
+        if (!date_picked.isValid())
+        {
+            // Not a valid date
+            // !!!
+        }
         WundergroundComms * wc = WundergroundComms::Instance();
-        wc -> GetDate(date -> text());
+        wc -> GetDate(date_picked.toString("yyyyMMdd"));
     }
 
     delete dialog;
